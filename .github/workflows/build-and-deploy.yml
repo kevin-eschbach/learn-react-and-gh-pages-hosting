@@ -9,23 +9,23 @@ permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  deployment:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    environment: production
+    environment: gh-pages
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: checkout
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Install and build
-      - run: |
+        run: |
           npm ci
           npm run build
           
       - name: Deploy
-      - uses: JamesIves/github-pages-deploy-action@v4.3.3
-      - with:
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
           branch: gh-pages # branch to deploy to
           folder: build # folder to deploy
